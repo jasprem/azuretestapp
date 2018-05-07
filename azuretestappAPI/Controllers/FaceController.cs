@@ -14,7 +14,7 @@ namespace azuretestappAPI.Controllers
     {
         // POST api/values
         [HttpPost]
-        public IActionResult Post([FromQuery] string query, [FromBody]VisionParameter visionParameter)
+        public IActionResult Post([FromQuery] string query, [FromBody]FaceParameter faceParameter)
         {
             const string baseUrl = "https://westeurope.api.cognitive.microsoft.com/";
             const string key = "12698d847341459a89a7fe8901eafc39";
@@ -23,7 +23,7 @@ namespace azuretestappAPI.Controllers
             httpClient.DefaultRequestHeaders.Add("Ocp-Apim-Subscription-Key", key);
             httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-            var json = JsonConvert.SerializeObject(visionParameter);
+            var json = JsonConvert.SerializeObject(faceParameter);
             var stringContent = new StringContent(json, Encoding.UTF8, "application/json");
 
             var url = $"face/v1.0/detect?{query}";
