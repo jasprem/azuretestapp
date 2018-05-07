@@ -17,7 +17,7 @@ namespace azuretestappAPI.Controllers
         public IActionResult Post([FromQuery] string query, [FromBody]VisionParameter visionParameter)
         {
             const string baseUrl = "https://westeurope.api.cognitive.microsoft.com/";
-            const string key = "25eb90a2564c40f58c156c877c44ea82";
+            const string key = "12698d847341459a89a7fe8901eafc39";
 
             var httpClient = new HttpClient { BaseAddress = new Uri(baseUrl) };
             httpClient.DefaultRequestHeaders.Add("Ocp-Apim-Subscription-Key", key);
@@ -31,7 +31,7 @@ namespace azuretestappAPI.Controllers
             var response = httpClient.PostAsync(url, stringContent).Result;
 
             var content = response.Content.ReadAsStringAsync().Result;
-            return Ok(JObject.Parse(content));
+            return Ok(JArray.Parse(content));
         }
     }
 }
